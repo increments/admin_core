@@ -1,0 +1,25 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+  - node_modules/**/*
+
+Metrics/BlockLength:
+  Exclude:
+  - lib/admin_core/rspec/**/*
+  - spec/**/*
+
+Metrics/LineLength:
+  Max: 125
+
+Style/ClassAndModuleChildren:
+  Exclude:
+  - spec/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/TrailingCommaInLiteral:
+  Enabled: false
