@@ -1,0 +1,58 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="ROBOTS" content="NOODP">
+    <title>AdminCore sample</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <%= stylesheet_link_tag 'admin-core', media: 'all' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <!--
+    // Header options
+    1. '.header-fixed'          - Fixed Header
+
+    // Sidebar options
+    1. '.sidebar-fixed'         - Fixed Sidebar
+    2. '.sidebar-hidden'        - Hidden Sidebar
+    3. '.sidebar-off-canvas'    - Off Canvas Sidebar
+    4. '.sidebar-compact'       - Compact Sidebar Navigation (Only icons)
+
+    // Aside options
+    1. '.aside-menu-fixed'      - Fixed Aside Menu
+    2. '.aside-menu-hidden'     - Hidden Aside Menu
+    3. '.aside-menu-off-canvas' - Off Canvas Aside Menu
+
+    // Footer options
+    1. 'footer-fixed'           - Fixed footer
+  -->
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+    <%= content_tag :div, nil,
+      id: "root",
+      'data-resource-managers' => AdminCore::resource_managers.to_json,
+      'data-sidebar' => [
+        AdminCore::ViewObject::SidebarTitle.new("Resources"),
+        AdminCore::resource_managers.map do |resource_manager_class|
+          AdminCore::ViewObject::SidebarResourceLink.new(resource_manager_class)
+        end,
+      ].flatten.to_json
+    %>
+    <%= javascript_include_tag 'admin-core' %>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var el = document.getElementById("root");
+        ReactDOM.render(
+          React.createElement(AdminCore, {
+            siteName: "AdminCore",
+            sidebar: JSON.parse(el.dataset.sidebar),
+            resourceManagers: JSON.parse(el.dataset.resourceManagers),
+          }),
+          el
+        );
+      });
+    </script>
+  </body>
+</html>
