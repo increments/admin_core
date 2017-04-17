@@ -14,3 +14,18 @@ YARD::Rake::YardocTask.new
 task default: %i[spec rubocop]
 
 task ci: %i[spec rubocop]
+
+namespace :client do
+  desc 'Update assets of generator templates'
+  task bundle: :build do
+    %w[admin-core.js admin-core.css].each do |name|
+      cp "client/dist/#{name}", 'lib/generators/admin_core/templates/'
+    end
+  end
+
+  task :build do
+    Dir.chdir 'client' do
+      sh 'yarn run build'
+    end
+  end
+end

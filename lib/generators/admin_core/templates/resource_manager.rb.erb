@@ -1,0 +1,33 @@
+module <%= configuration.module_name %>
+  class <%= class_name %> < AdminCore::BaseResourceManager
+    register_scopes []
+
+<% attributes.each do |attribute| -%>
+    <%= attribute.define_field %>
+<% end -%>
+
+    register_fields_for :index, [
+<% attributes.select(&:field_implemented?).take(4).each do |attribute| -%>
+      <%= attribute.register_name %>
+<% end -%>
+    ]
+
+    register_fields_for :new, :edit, [
+<% attributes.select(&:form?).each do |attribute| -%>
+      <%= attribute.register_name %>
+<% end -%>
+    ]
+
+    register_fields_for :show, [
+<% attributes.each do |attribute| -%>
+      <%= attribute.register_name %>
+<% end -%>
+    ]
+
+    destroyable true
+
+<% attributes.select(&:filter_implemented?).each do |attribute| -%>
+    <%= attribute.define_and_register_filter %>
+<% end -%>
+  end
+end
