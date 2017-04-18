@@ -1,6 +1,7 @@
 AllCops:
   TargetRubyVersion: 2.4
   Exclude:
+  - client/**/*
   - node_modules/**/*
 
 Metrics/BlockLength:

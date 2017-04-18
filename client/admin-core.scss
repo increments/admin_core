@@ -1,0 +1,8 @@
+@charset 'utf-8';
+@import './node_modules/coreui.io/React_Starter/scss/style';
+
+.app-header.navbar .navbar-brand {
+  background-image: none;
+  line-height: 2em;
+  text-align: center;
+}

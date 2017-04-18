@@ -1,0 +1,60 @@
+{
+  "name": "admin-core-js",
+  "version": "0.0.0",
+  "engines": {
+    "node": "~6.10",
+    "npm": "~3.10",
+    "yarn": "~0.21"
+  },
+  "description": "Flexible admin framework for Rails",
+  "main": "lib/AdminCore.js",
+  "author": "Yuku Takahashi <yuku@qiita.com>",
+  "scripts": {
+    "build": "yarn run clean && run-p build:*",
+    "build:dist": "run-p build:dist:*",
+    "build:dist:js": "webpack && uglifyjs dist/admin-core.js -o dist/admin-core.min.js --source-map dist/admin-core.min.js.map --source-map-url admin-core.min.js.map",
+    "build:dist:css": "mkdir -p dist && node-sass --output-style compressed admin-core.scss > dist/admin-core.css",
+    "build:lib": "babel src -d lib -s && rm -fr lib/main.*",
+    "clean": "rm -fr dist lib",
+    "test": "flow"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/increments/admin_core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/increments/admin_core/issues"
+  },
+  "homepage": "https://github.com/increments/admin_core#readme",
+  "dependencies": {
+    "axios": "^0.16.1",
+    "classnames": "^2.2.5",
+    "coreui.io": "^1.0.0-alpha.4",
+    "lodash.omit": "^4.5.0",
+    "lodash.reduce": "^4.6.0",
+    "lodash.topairs": "^4.3.0",
+    "react": "^15.5.4",
+    "react-addons-css-transition-group": "^15.5.2",
+    "react-addons-transition-group": "^15.5.2",
+    "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1",
+    "reactstrap": "^4.5.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.2",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-plugin-flowtype": "^2.30.4",
+    "eslint-plugin-react": "^6.10.3",
+    "flow-bin": "^0.44.0",
+    "flow-typed": "^2.0.0",
+    "node-sass": "^4.5.2",
+    "npm-run-all": "^4.0.2",
+    "uglify-js": "^2.8.22",
+    "webpack": "^2.4.1"
+  }
+}
