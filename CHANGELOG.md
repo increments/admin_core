@@ -6,4 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/increments/circleci-coverage_reporter/compare/a3205a7...HEAD
+## [0.0.1]
+### Added
+- Initial release
+- Sample app with User and Tweet models
+
+[Unreleased]: https://github.com/increments/circleci-coverage_reporter/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/increments/circleci-coverage_reporter/compare/a3205a7...v0.0.1
