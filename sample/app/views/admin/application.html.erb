@@ -38,6 +38,12 @@
         AdminCore::resource_managers.map do |resource_manager_class|
           AdminCore::ViewObject::SidebarResourceLink.new(resource_manager_class)
         end,
+        AdminCore::ViewObject::SidebarDropdown.new(
+          "Dropdown",
+          [
+            AdminCore::ViewObject::SidebarLink.new('External Link', 'http://example.com')
+          ],
+        ),
       ].flatten.to_json
     %>
     <%= javascript_include_tag 'admin-core' %>
