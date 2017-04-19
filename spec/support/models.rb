@@ -31,6 +31,9 @@ module Admin
   end
 end
 
+AdminCore.register_resource_manager(Admin::User)
+AdminCore.register_resource_manager(Admin::Tweet)
+
 class TestApp < Rails::Application
   routes.draw do
     namespace :admin do
