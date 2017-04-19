@@ -1,7 +1,7 @@
 module AdminCore
   module RSpec
     module Matchers
-      extend RSpec::Matchers::DSL
+      extend ::RSpec::Matchers::DSL
 
       matcher :have_shape_of_ResourceField do |type_value: nil, value_type: nil|
         match do |actual|
