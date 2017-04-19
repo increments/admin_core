@@ -9,7 +9,7 @@ module AdminCore
       included do
         shared_context 'with resource field instance' do |create_resource:, name:, options:, page:|
           let(:resource_field) do
-            described_class.new(create_resource.call, name, options, page)
+            described_class.new(create_resource.call, name.to_sym, options, page)
           end
         end
 
@@ -24,10 +24,10 @@ module AdminCore
 
           describe '.permitted_field_name_of' do
             subject do
-              described_class.permitted_field_name_of(name)
+              described_class.permitted_field_name_of(name.to_sym)
             end
 
-            it { should be_a String }
+            it { should be_a Symbol }
           end
 
           describe '#to_hash' do
