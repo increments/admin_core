@@ -16,7 +16,8 @@
     "build:dist:css": "mkdir -p dist && node-sass --output-style compressed admin-core.scss > dist/admin-core.css",
     "build:lib": "babel src -d lib -s && rm -fr lib/main.*",
     "clean": "rm -fr dist lib",
-    "test": "flow"
+    "lint": "eslint src",
+    "test": "flow && run-p lint"
   },
   "repository": {
     "type": "git",
