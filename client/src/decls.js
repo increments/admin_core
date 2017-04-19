@@ -32,7 +32,7 @@ type $ResourceField<T, V> = {
 export type ResourceField = $ResourceField<*, *>;
 
 export type ResourceField$Boolean = $ResourceField<"boolean", boolean>;
-export type ResourceField$BelongsTo = $ResourceField<"belongs_to", { resource: Resource; paramName: string; }>;
+export type ResourceField$BelongsTo = $ResourceField<"belongs_to", { resource: Resource; }>;
 export type ResourceField$Date = $ResourceField<"date", string>;
 export type ResourceField$DateTime = $ResourceField<"date_time", string>;
 export type ResourceField$Enum = $ResourceField<"enum", { value: string; values: string[]; }>;

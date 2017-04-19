@@ -3,7 +3,6 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 import type {ResourceFieldView, ResourceField$BelongsTo} from "../decls";
-import {getValue} from "../resource-field-renderer";
 
 export default class BelongsTo implements ResourceFieldView {
   field: ResourceField$BelongsTo;
@@ -13,10 +12,7 @@ export default class BelongsTo implements ResourceFieldView {
   }
 
   getValue() {
-    const fi = this.field.value.resource.fields.find(f => f.name === this.field.value.paramName);
-    if (fi) {
-      return getValue(fi);
-    }
+    throw new Error("Not implemented");
   }
 
   renderIndex() {
