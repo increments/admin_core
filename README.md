@@ -1,5 +1,11 @@
 # AdminCore
 
+[![Gem Version](http://img.shields.io/gem/v/admin_core.svg?style=flat)](http://badge.fury.io/rb/admin_core)
+[![Dependency Status](http://img.shields.io/gemnasium/increments/admin_core.svg?style=flat)](https://gemnasium.com/increments/admin_core)
+[![CircleCI](https://circleci.com/gh/increments/admin_core.svg?style=shield)](https://circleci.com/gh/increments/admin_core)
+[![Coverage Status](https://img.shields.io/codeclimate/coverage/github/increments/admin_core.svg)](https://codeclimate.com/github/increments/admin_core/coverage)
+[![Code Climate](https://img.shields.io/codeclimate/github/increments/admin_core.svg?style=flat)](https://codeclimate.com/github/increments/admin_core)
+
 A flexible admin framework for Rails
 
 :warning: AdminCore is not production ready.
