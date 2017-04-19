@@ -74,6 +74,7 @@ AdminCore.registerResourceField("boolean", require("./resource-field/Boolean").d
 AdminCore.registerResourceField("date", require("./resource-field/Date").default);
 AdminCore.registerResourceField("date_time", require("./resource-field/DateTime").default);
 AdminCore.registerResourceField("enum", require("./resource-field/Enum").default);
+AdminCore.registerResourceField("has_many", require("./resource-field/HasMany").default);
 AdminCore.registerResourceField("number", require("./resource-field/Number").default);
 AdminCore.registerResourceField("string", require("./resource-field/String").default);
 AdminCore.registerResourceField("text", require("./resource-field/Text").default);

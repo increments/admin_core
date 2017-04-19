@@ -1,9 +1,9 @@
-require_relative 'base'
+require_relative 'associative'
 require_relative '../errors'
 
 module AdminCore
   module ResourceField
-    class BelongsTo < Base
+    class BelongsTo < Associative
       private
 
       def field_value
@@ -13,23 +13,8 @@ module AdminCore
         }
       end
 
-      def validate
-        return if associated_resource_manager_class
-        raise AdminCore::InvalidResourceFieldDefinition, 'resource_manager_class option is required'
-      end
-
       def associated_resource
         data || associated_resource_manager.build({})
-      end
-
-      def associated_resource_manager
-        @associated_resource_manager ||= associated_resource_manager_class.new
-      end
-
-      def associated_resource_manager_class
-        options[:resource_manager_class] || AdminCore.resource_managers.find do |manager_class|
-          manager_class.resource_name.to_sym == name
-        end
       end
     end
 
