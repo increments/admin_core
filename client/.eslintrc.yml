@@ -7,13 +7,12 @@
 
   extends: eslint:recommended
 
-  ecmaFeatures:
-    module: true
-    modules: true
-
   parser: babel-eslint
 
   parserOptions:
+    ecmaFeatures:
+      module: true
+    ecmaVersion: 6
     sourceType: module
 
   rules:

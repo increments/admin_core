@@ -6,8 +6,9 @@
   - flowtype
   - react
 
-  ecmaFeatures:
-    jsx: true
+  parserOptions:
+    ecmaFeatures:
+      jsx: true
 
   rules:
     flowtype/boolean-style: error
