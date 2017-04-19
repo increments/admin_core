@@ -1,6 +1,8 @@
 // @flow
 import React from "react";
-import type {ResourceFilterView, ResourceFilter$Boolean} from "../decls";
+import type {ResourceFilterView, $ResourceFilter} from "../decls";
+
+type ResourceFilter$Boolean = $ResourceFilter<"is", boolean>;
 
 export default class BooleanView implements ResourceFilterView {
   filter: ResourceFilter$Boolean;

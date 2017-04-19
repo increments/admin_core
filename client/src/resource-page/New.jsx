@@ -4,7 +4,12 @@ import React from "react";
 import Base from "./Base";
 import ResourceForm from "../components/ResourceForm";
 import Breadcrumb from "../components/Breadcrumb";
-import type {ResourcePage$New, ResourceManager} from "../decls";
+import type {Resource, ResourceManager} from "../decls";
+
+// Shape of AdminCore::ResourcePage::New#to_json
+type ResourcePage$New = {
+  resource: Resource;
+}
 
 export default function newPage(resourceManager: ResourceManager) {
   class NewPage extends Base {

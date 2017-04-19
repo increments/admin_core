@@ -1,6 +1,8 @@
 // @flow
 import React from "react";
-import type {ResourceFieldView, ResourceField$Date} from "../decls";
+import type {ResourceFieldView, $ResourceField} from "../decls";
+
+type ResourceField$Date = $ResourceField<"date", string>;
 
 export default class DateView implements ResourceFieldView {
   field: ResourceField$Date;

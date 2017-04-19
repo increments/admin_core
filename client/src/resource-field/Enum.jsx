@@ -1,6 +1,8 @@
 // @flow
 import React from "react";
-import type {ResourceFieldView, ResourceField$Enum} from "../decls";
+import type {ResourceFieldView, $ResourceField} from "../decls";
+
+type ResourceField$Enum = $ResourceField<"enum", { value: string; values: string[]; }>;
 
 export default class Enum implements ResourceFieldView {
   field: ResourceField$Enum;

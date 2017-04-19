@@ -6,8 +6,13 @@ import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import httpClient from "../http-client";
 import Base from "./Base";
 import Breadcrumb from "../components/Breadcrumb";
-import type {ResourceManager, ResourcePage$Show} from "../decls";
+import type {ResourceManager, Resource} from "../decls";
 import {renderShow} from "../resource-field-renderer";
+
+// Shape of AdminCore::ResourcePage::Show#to_json
+type ResourcePage$Show = {
+  resource: Resource;
+}
 
 export default function show(resourceManager: ResourceManager) {
   class ShowPage extends Base {

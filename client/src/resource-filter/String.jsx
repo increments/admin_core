@@ -1,6 +1,8 @@
 // @flow
 import React from "react";
-import type {ResourceFilterView, ResourceFilter$String} from "../decls";
+import type {ResourceFilterView, $ResourceFilter} from "../decls";
+
+type ResourceFilter$String = $ResourceFilter<"contains" | "equals" | "starts_with" | "ends_with", string>;
 
 class ResourceFilterString extends React.Component {
   props: {

@@ -2,7 +2,9 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-import type {ResourceFieldView, ResourceField$BelongsTo} from "../decls";
+import type {ResourceFieldView, Resource, $ResourceField} from "../decls";
+
+type ResourceField$BelongsTo = $ResourceField<"belongs_to", { resource: Resource; }>;
 
 export default class BelongsTo implements ResourceFieldView {
   field: ResourceField$BelongsTo;

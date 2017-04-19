@@ -1,6 +1,8 @@
 // @flow
 import React from "react";
-import type {ResourceFieldView, ResourceField$Boolean} from "../decls";
+import type {ResourceFieldView, $ResourceField} from "../decls";
+
+type ResourceField$Boolean = $ResourceField<"boolean", boolean>;
 
 export default class BooleanView implements ResourceFieldView {
   field: ResourceField$Boolean;

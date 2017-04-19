@@ -1,6 +1,8 @@
 // @flow
 import React from "react";
-import type {ResourceFieldView, ResourceField$Text} from "../decls";
+import type {ResourceFieldView, $ResourceField} from "../decls";
+
+type ResourceField$Text = $ResourceField<"text", string>;
 
 export default class TextView implements ResourceFieldView {
   field: ResourceField$Text;

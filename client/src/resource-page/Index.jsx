@@ -12,7 +12,19 @@ import Breadcrumb from "../components/Breadcrumb";
 import ResourceFilters from "../components/ResourceFilters";
 import ResourcesCollection from "../components/ResourcesCollection";
 import Pagination from "../components/Pagination";
-import type {ResourceManager, ResourcePage$Index} from "../decls";
+import type {ResourceManager, ResourceFilter, Resource} from "../decls";
+
+// Shape of AdminCore::ResourcePage::Index#to_json
+type ResourcePage$Index = {
+  attributes: string[];
+  resources: Resource[];
+  filters: ResourceFilter[];
+  scopes: { name: string; count: number; }[];
+  pagination: {
+    current: number;
+    total: number;
+  };
+}
 
 export default function index(resourceManager: ResourceManager) {
   class IndexPage extends Base {

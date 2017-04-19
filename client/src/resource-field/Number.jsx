@@ -1,6 +1,8 @@
 // @flow
 import React from "react";
-import type {ResourceFieldView, ResourceField$Number} from "../decls";
+import type {ResourceFieldView, $ResourceField} from "../decls";
+
+type ResourceField$Number = $ResourceField<"number", number>;
 
 export default class NumberView implements ResourceFieldView {
   field: ResourceField$Number;

@@ -1,6 +1,8 @@
 // @flow
 import React from "react";
-import type {ResourceFilterView, ResourceFilter$Number} from "../decls";
+import type {ResourceFilterView, $ResourceFilter} from "../decls";
+
+type ResourceFilter$Number = $ResourceFilter<"equals" | "greater_than" | "less_than", number>;
 
 class ResourceFilterNumber extends React.Component {
   props: {
