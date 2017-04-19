@@ -4,6 +4,7 @@ AllCops:
   - client/**/*
   - node_modules/**/*
   - sample/**/*
+  - vendor/**/*
 
 Metrics/BlockLength:
   Exclude:
