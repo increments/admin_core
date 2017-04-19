@@ -1,29 +1,50 @@
 // @flow
 import React from "react";
-import type {ResourceField$DateTime} from "../decls";
+import type {ResourceFieldView, ResourceField$DateTime} from "../decls";
 
-exports.getValue = function (field: ResourceField$DateTime) {
-  return field.value;
-};
+export default class DateTime implements ResourceFieldView {
+  field: ResourceField$DateTime;
 
-exports.Index = exports.Show = function (field: ResourceField$DateTime) {
-  const date = new Date(field.value);
-  return <span>{date.toLocaleString()}</span>;
-};
+  constructor(field: ResourceField$DateTime) {
+    this.field = field;
+  }
 
-exports.New = exports.Edit = function (field: ResourceField$DateTime, onChange: (string, any) => void) {
-  return (
-    <input
-      className="form-control"
-      defaultValue={field.value}
-      name={field.name}
-      onChange={(e: SyntheticEvent) => {
-        const el = e.target;
-        if (el instanceof HTMLInputElement) {
-          onChange(field.name, el.value);
-        }
-      }}
-      type="datetime"
-    />
-  );
-};
+  getValue() {
+    return this.field.value;
+  }
+
+  renderIndex() {
+    const date = new Date(this.field.value);
+    return <span>{date.toLocaleString()}</span>;
+  }
+
+  renderNew(onChange: (string, any) => void) {
+    return this.renderInput(onChange);
+  }
+
+  renderShow() {
+    const date = new Date(this.field.value);
+    return <span>{date.toLocaleString()}</span>;
+  }
+
+  renderEdit(onChange: (string, any) => void) {
+    return this.renderInput(onChange);
+  }
+
+  renderInput(onChange: (string, any) => void) {
+    return (
+      <input
+        className="form-control"
+        defaultValue={this.field.value}
+        name={this.field.name}
+        onChange={(e: SyntheticEvent) => {
+          const el = e.target;
+          if (el instanceof HTMLInputElement) {
+            onChange(this.field.name, el.value);
+          }
+        }}
+        type="date"
+      />
+    );
+  }
+}

@@ -40,15 +40,15 @@ export type ResourceField$Number = $ResourceField<"number", number>;
 export type ResourceField$String = $ResourceField<"string", string>;
 export type ResourceField$Text = $ResourceField<"text", string>;
 
-// Shape of exports of resource-field/*.js
-export type ResourceFieldModule = {
-  Index: (ResourceField) => React$Element<*>;
-  New: (ResourceField, onChange: (string, any) => void) => React$Element<*>;
-  Show: (ResourceField) => React$Element<*>;
-  Edit: (ResourceField, onChange: (string, any) => void) => React$Element<*>;
-  getValue: (ResourceField) => any;
+export interface ResourceFieldView {
+  field: ResourceField;
+  constructor(ResourceField): void;
+  getValue(): any;
+  renderIndex(): React$Element<*>;
+  renderNew(onChange: (string, any) => void): React$Element<*>;
+  renderShow(): React$Element<*>;
+  renderEdit(onChange: (string, any) => void): React$Element<*>;
 }
-
 
 type $ResourceFilter<O, V> = {
   type: string;
@@ -66,9 +66,10 @@ export type ResourceFilter$Boolean = $ResourceFilter<"is", boolean>;
 export type ResourceFilter$Number = $ResourceFilter<"equals" | "greater_than" | "less_than", number>;
 export type ResourceFilter$String = $ResourceFilter<"contains" | "equals" | "starts_with" | "ends_with", string>;
 
-// Shpae of exports of admin-core/resource-filter/*.js
-export type ResourceFilterModule = {
-  Filter: (ResourceFilter, _: (string, string, string) => void) => React$Element<*>;
+export interface ResourceFilterView {
+  filter: ResourceFilter;
+  constructor(ResourceFilter): void;
+  renderFilter(onChange: (string, string, string) => void): React$Element<*>;
 }
 
 // Shape of AdminCore::ResourcePage::Index#to_json

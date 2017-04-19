@@ -1,34 +1,54 @@
 // @flow
 import React from "react";
-import type {ResourceField$Enum} from "../decls";
+import type {ResourceFieldView, ResourceField$Enum} from "../decls";
 
-exports.getValue = function (field: ResourceField$Enum) {
-  return field.value.value;
-};
+export default class Enum implements ResourceFieldView {
+  field: ResourceField$Enum;
 
-exports.Index = exports.Show = function (field: ResourceField$Enum) {
-  if (field.value.values.indexOf(field.value.value) !== -1 && typeof field.value.value === "number") {
-    return <span>{field.value.values[field.value.value]}</span>;
-  } else {
-    return <span>{field.value.value}</span>;
+  constructor(field: ResourceField$Enum) {
+    this.field = field;
   }
-};
 
-exports.New = exports.Edit = function (field: ResourceField$Enum, onChange: (string, any) => void) {
-  return (
-    <select
-      className="form-control"
-      defaultValue={field.value.value}
-      onChange={(e: SyntheticEvent) => {
-        const el = e.target;
-        if (el instanceof HTMLSelectElement) {
-          onChange(field.name, el.value);
-        }
-      }}
-    >
-      {field.value.values.map((value, i) =>
-        <option value={value} key={i}>{value}</option>
-      )}
-    </select>
-  );
-};
+  getValue() {
+    return this.field.value.value;
+  }
+
+  renderIndex() {
+    if (this.field.value.values.indexOf(this.field.value.value) !== -1 && typeof this.field.value.value === "number") {
+      return <span>{this.field.value.values[this.field.value.value]}</span>;
+    } else {
+      return <span>{this.field.value.value}</span>;
+    }
+  }
+
+  renderNew(onChange: (string, any) => void) {
+    return this.renderInput(onChange);
+  }
+
+  renderShow() {
+    return this.renderIndex();
+  }
+
+  renderEdit(onChange: (string, any) => void) {
+    return this.renderInput(onChange);
+  }
+
+  renderInput(onChange: (string, any) => void) {
+    return (
+      <select
+        className="form-control"
+        defaultValue={this.field.value.value}
+        onChange={(e: SyntheticEvent) => {
+          const el = e.target;
+          if (el instanceof HTMLSelectElement) {
+            onChange(this.field.name, el.value);
+          }
+        }}
+      >
+        {this.field.value.values.map((value, i) =>
+          <option value={value} key={i}>{value}</option>
+        )}
+      </select>
+    );
+  }
+}

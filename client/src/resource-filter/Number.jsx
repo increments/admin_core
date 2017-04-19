@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import type {ResourceFilter$Number} from "../decls";
+import type {ResourceFilterView, ResourceFilter$Number} from "../decls";
 
 class ResourceFilterNumber extends React.Component {
   props: {
@@ -40,6 +40,14 @@ class ResourceFilterNumber extends React.Component {
   }
 }
 
-export function Filter(filter: ResourceFilter$Number, onChange: (string, string, string) => void) {
-  return <ResourceFilterNumber filter={filter} onChange={onChange} />;
+export default class NumberView implements ResourceFilterView {
+  filter: ResourceFilter$Number;
+
+  constructor(filter: ResourceFilter$Number) {
+    this.filter = filter;
+  }
+
+  renderFilter(onChange: (string, string, string) => void) {
+    return <ResourceFilterNumber filter={this.filter} onChange={onChange} />;
+  }
 }

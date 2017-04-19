@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import type {ResourceFilter$String} from "../decls";
+import type {ResourceFilterView, ResourceFilter$String} from "../decls";
 
 class ResourceFilterString extends React.Component {
   props: {
@@ -41,6 +41,14 @@ class ResourceFilterString extends React.Component {
   }
 }
 
-export function Filter(filter: ResourceFilter$String, onChange: (string, string, string) => void) {
-  return <ResourceFilterString filter={filter} onChange={onChange} />;
+export default class StringView implements ResourceFilterView {
+  filter: ResourceFilter$String;
+
+  constructor(filter: ResourceFilter$String) {
+    this.filter = filter;
+  }
+
+  renderFilter(onChange: (string, string, string) => void) {
+    return <ResourceFilterString filter={this.filter} onChange={onChange} />;
+  }
 }

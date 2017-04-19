@@ -1,28 +1,44 @@
 // @flow
 import React from "react";
-import type {ResourceField$Number} from "../decls";
+import type {ResourceFieldView, ResourceField$Number} from "../decls";
 
-exports.getValue = function (field: ResourceField$Number) {
-  return field.value;
-};
+export default class NumberView implements ResourceFieldView {
+  field: ResourceField$Number;
 
-exports.Index = exports.Show = function (field: ResourceField$Number) {
-  return <span>{field.value}</span>;
-};
+  constructor(field: ResourceField$Number) {
+    this.field = field;
+  }
 
-exports.New = exports.Edit = function(field: ResourceField$Number, onChange: (string, any) => void) {
-  return (
-    <input
-      className="form-control"
-      defaultValue={field.value}
-      name={field.name}
-      onChange={(e: SyntheticEvent) => {
-        const el = e.target;
-        if (el instanceof HTMLInputElement) {
-          onChange(field.name, el.value);
-        }
-      }}
-      type="number"
-    />
-  );
-};
+  getValue() {
+    return this.field.value;
+  }
+
+  renderIndex() {
+    return <span>{this.field.value}</span>;
+  }
+
+  renderNew(onChange: (string, any) => void) {
+    return (
+      <input
+        className="form-control"
+        defaultValue={this.field.value}
+        name={this.field.name}
+        onChange={(e: SyntheticEvent) => {
+          const el = e.target;
+          if (el instanceof HTMLInputElement) {
+            onChange(this.field.name, el.value);
+          }
+        }}
+        type="number"
+      />
+    );
+  }
+
+  renderShow() {
+    return this.renderIndex();
+  }
+
+  renderEdit(onChange: (string, any) => void) {
+    return this.renderNew(onChange);
+  }
+}

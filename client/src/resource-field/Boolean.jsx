@@ -1,43 +1,67 @@
 // @flow
 import React from "react";
-import type {ResourceField$Boolean} from "../decls";
+import type {ResourceFieldView, ResourceField$Boolean} from "../decls";
 
-exports.getValue = function (field: ResourceField$Boolean) {
-  return field.value;
-};
+export default class BooleanView implements ResourceFieldView {
+  field: ResourceField$Boolean;
 
-exports.Index = exports.Show = function (field: ResourceField$Boolean) {
-  return (
-    <span className="switch switch-text switch-primary">
-      <input
-        checked={field.value}
-        className="switch-input"
-        disabled={true}
-        type="checkbox"
-      />
-      <span className="switch-label" data-on="On" data-off="Off"/>
-      <span className="switch-handle"/>
-    </span>
-  );
-};
+  constructor(field: ResourceField$Boolean) {
+    this.field = field;
+  }
 
-exports.New = exports.Edit = function (field: ResourceField$Boolean, onChange: (string, any) => void) {
-  return (
-    <label className="switch switch-text switch-primary">
-      <input
-        type="checkbox"
-        name={field.name}
-        className="switch-input"
-        defaultChecked={field.value}
-        onChange={(e: SyntheticEvent) => {
-          const el = e.target;
-          if (el instanceof HTMLInputElement) {
-            onChange(field.name, el.checked);
-          }
-        }}
-      />
-      <span className="switch-label" data-on="On" data-off="Off"/>
-      <span className="switch-handle"/>
-    </label>
-  );
-};
+  getValue() {
+    return this.field.value;
+  }
+
+  renderIndex() {
+    return this.renderSwitch();
+  }
+
+  renderNew(onChange: (string, any) => void) {
+    return this.renderInput(onChange);
+  }
+
+  renderShow() {
+    return this.renderSwitch();
+  }
+
+  renderEdit(onChange: (string, any) => void) {
+    return this.renderInput(onChange);
+  }
+
+  renderSwitch() {
+    return (
+      <span className="switch switch-text switch-primary">
+        <input
+          checked={this.field.value}
+          className="switch-input"
+          disabled={true}
+          type="checkbox"
+        />
+        <span className="switch-label" data-on="On" data-off="Off"/>
+        <span className="switch-handle"/>
+      </span>
+    );
+  }
+
+  renderInput(onChange: (string, any) => void) {
+    return (
+      <label className="switch switch-text switch-primary">
+        <input
+          type="checkbox"
+          name={this.field.name}
+          className="switch-input"
+          defaultChecked={this.field.value}
+          onChange={(e: SyntheticEvent) => {
+            const el = e.target;
+            if (el instanceof HTMLInputElement) {
+              onChange(this.field.name, el.checked);
+            }
+          }}
+        />
+        <span className="switch-label" data-on="On" data-off="Off"/>
+        <span className="switch-handle"/>
+      </label>
+    );
+  }
+}

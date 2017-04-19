@@ -1,45 +1,28 @@
 // @flow
-import type {
-  ResourceFieldModule,
-  ResourceField,
-} from "./decls";
-
-const resourceFields: { [string]: ResourceFieldModule; } = {};
-
-export function register(name: string, module: ResourceFieldModule) {
-  resourceFields[name] = module;
-}
+import AdminCore from "./AdminCore";
+import type {ResourceField} from "./decls";
 
 export function getValue(field: ResourceField) {
-  const module = resourceFields[field.type];
+  const module = AdminCore.resolveResourceField(field);
   return module.getValue(field);
 }
 
 export function renderIndex(field: ResourceField) {
-  const module = resourceFields[field.type];
-  return module.Index(field);
+  const module = AdminCore.resolveResourceField(field);
+  return module.renderIndex();
 }
 
 export function renderNew(field: ResourceField, onChange: (string, any) => void) {
-  const module = resourceFields[field.type];
-  return module.New(field, onChange);
+  const module = AdminCore.resolveResourceField(field);
+  return module.renderNew(onChange);
 }
 
 export function renderShow(field: ResourceField) {
-  const module = resourceFields[field.type];
-  return module.Show(field);
+  const module = AdminCore.resolveResourceField(field);
+  return module.renderShow();
 }
 
 export function renderEdit(field: ResourceField, onChange: (string, any) => void) {
-  const module = resourceFields[field.type];
-  return module.Edit(field, onChange);
+  const module = AdminCore.resolveResourceField(field);
+  return module.renderEdit(onChange);
 }
-
-register("belongs_to", require("./resource-field/BelongsTo"));
-register("boolean", require("./resource-field/Boolean"));
-register("date", require("./resource-field/Date"));
-register("date_time", require("./resource-field/DateTime"));
-register("enum", require("./resource-field/Enum"));
-register("number", require("./resource-field/Number"));
-register("string", require("./resource-field/String"));
-register("text", require("./resource-field/Text"));
