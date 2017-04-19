@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = spec.summary
   spec.homepage      = 'https://github.com/increments/admin_core'
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^spec/}) }
+  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec|client|sample)/}) }
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
