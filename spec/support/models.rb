@@ -3,7 +3,7 @@ require 'rails'
 require_relative 'factory_girl'
 
 class Tweet < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, counter_cache: true
 end
 
 class User < ActiveRecord::Base
@@ -14,7 +14,16 @@ FactoryGirl.define do
   factory :user do
     name 'User'
     admin false
-    tweets_count 0
+
+    factory :user_with_tweets do
+      transient do
+        tweets_count 5
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:tweet, evaluator.tweets_count, user: user)
+      end
+    end
   end
 
   factory :tweet do
