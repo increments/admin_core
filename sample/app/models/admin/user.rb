@@ -8,7 +8,7 @@ module Admin
     define_field :tweets_count, :number
     define_field :created_at, :date_time
     define_field :updated_at, :date_time
-    # define_field :tweets, :has_many
+    define_field :tweets, :has_many
 
     register_fields_for :index, [
       :id,
@@ -30,7 +30,7 @@ module Admin
       :tweets_count,
       :created_at,
       :updated_at,
-      # :tweets,
+      :tweets,
     ]
 
     destroyable true
