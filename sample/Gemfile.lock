@@ -1,7 +1,7 @@
 PATH
   remote: ..
   specs:
-    admin_core (0.0.0)
+    admin_core (0.0.2)
       kaminari (~> 1.0)
       rails (>= 3.2)
 
