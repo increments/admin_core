@@ -2,12 +2,12 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-import EditPage from "./resource-page/edit";
-import Header from "./components/header";
-import IndexPage from "./resource-page/index";
-import NewPage from "./resource-page/new";
-import ShowPage from "./resource-page/show";
-import Sidebar from "./components/sidebar";
+import EditPage from "./resource-page/Edit";
+import Header from "./components/Header";
+import IndexPage from "./resource-page/Index";
+import NewPage from "./resource-page/New";
+import ShowPage from "./resource-page/Show";
+import Sidebar from "./components/Sidebar";
 import type {
   ResourceField,
   ResourceFieldView,
