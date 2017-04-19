@@ -62,7 +62,10 @@ module AdminCore
         end
 
         def field_implemented?
-          AdminCore.resource_field_map.key?(field_type)
+          AdminCore.resolve_resource_field(field_type)
+          true
+        rescue AdminCore::ResourceFieldNotFound
+          false
         end
 
         def filter_implemented?

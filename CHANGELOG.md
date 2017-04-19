@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Client: Add registerResourceField and registerResourceFilter APIs
+- Ruby: Enable to register custom filter
 
 ## [0.0.2] - 2017-04-18
 ### Fixed

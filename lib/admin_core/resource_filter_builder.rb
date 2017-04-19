@@ -18,7 +18,7 @@ module AdminCore
 
     # @return [Class]
     def resource_filter_class
-      @resource_filter_class ||= "AdminCore::ResourceFilter::#{type.to_s.camelize}".constantize
+      @resource_filter_class ||= AdminCore.resolve_resource_filter(type)
     end
 
     def regexp

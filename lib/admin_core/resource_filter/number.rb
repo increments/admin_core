@@ -20,6 +20,8 @@ module AdminCore
           raise NotImplementedError
         end
       end
+
+      AdminCore.register_resource_filter(Number)
     end
   end
 end

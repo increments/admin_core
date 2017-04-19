@@ -13,5 +13,7 @@ module AdminCore
         end
       end
     end
+
+    AdminCore.register_resource_filter(Boolean)
   end
 end

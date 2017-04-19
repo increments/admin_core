@@ -23,5 +23,7 @@ module AdminCore
         end
       end
     end
+
+    AdminCore.register_resource_filter(String)
   end
 end

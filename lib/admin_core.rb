@@ -28,16 +28,49 @@ module AdminCore
     end
 
     # @param field_class [Class] a child of {AdminCore::ResourceField::Base}
+    # @raise [AdminCore::ResourceFieldAlreadyRegistered]
     def register_resource_field(field_class)
       if resource_field_map.key?(field_class.type)
-        raise AdminCore::ResourceFilterAlreadyRegistered, field_class.type
+        raise AdminCore::ResourceFieldAlreadyRegistered, field_class.type
       end
       resource_field_map[field_class.type] = field_class
     end
 
+    # @param type [Symbol]
+    # @return [Class]
+    # @raise [AdminCore::ResourceFieldNotFound]
+    def resolve_resource_field(type)
+      raise AdminCore::ResourceFieldNotFound, type unless resource_field_map.key?(type)
+      resource_field_map[type]
+    end
+
+    # @param filter_class [Class] a child of {AdminCore::ResourceFilter::Base}
+    # @raise [AdminCore::ResourceFilterAlreadyRegistered]
+    def register_resource_filter(filter_class)
+      if resource_filter_map.key?(filter_class.type)
+        raise AdminCore::ResourceFilterAlreadyRegistered, filter_class.type
+      end
+      resource_filter_map[filter_class.type] = filter_class
+    end
+
+    # @param type [Symbol]
+    # @return [Class]
+    # @raise [AdminCore::ResourceFilterNotFound]
+    def resolve_resource_filter(type)
+      raise AdminCore::ResourceFilterNotFound, type unless resource_filter_map.key?(type)
+      resource_filter_map[type]
+    end
+
+    private
+
     # @return [Hash<Symbol, Class>]
     def resource_field_map
       @resource_fields ||= {}
+    end
+
+    # @return [Hash<Symbol, Class>]
+    def resource_filter_map
+      @resource_filter_map ||= {}
     end
   end
 end

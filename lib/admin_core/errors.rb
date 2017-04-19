@@ -9,7 +9,13 @@ module AdminCore
   class ResourceFieldAlreadyRegistered < Error
   end
 
+  class ResourceFilterAlreadyRegistered < Error
+  end
+
   class ResourceFieldNotFound < Error
+  end
+
+  class ResourceFilterNotFound < Error
   end
 
   class InvalidResourceFieldDefinition < Error

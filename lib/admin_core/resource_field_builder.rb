@@ -3,16 +3,6 @@ require 'admin_core/errors'
 
 module AdminCore
   class ResourceFieldBuilder
-    # @param type [Symbol]
-    # @return [Class]
-    # @raise [AdminCore::FieldNotFound]
-    def self.resolve(type)
-      unless AdminCore.resource_field_map.key?(type)
-        raise AdminCore::FieldNotFound, "Unknown field: #{type}"
-      end
-      AdminCore.resource_field_map[type]
-    end
-
     # @param name [Symbol]
     # @param type [Symbol, Class]
     # @param options [Symbol]
@@ -42,7 +32,7 @@ module AdminCore
 
     # @return [Class]
     def resource_field_class
-      @resource_field_class ||= self.class.resolve(type)
+      @resource_field_class ||= AdminCore.resolve_resource_field(type)
     end
   end
 end
