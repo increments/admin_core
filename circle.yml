@@ -24,3 +24,5 @@ test:
   override:
   - bundle exec rake
   - cd client; yarn test
+  post:
+  - bundle exec codeclimate-test-reporter
