@@ -1,0 +1,12 @@
+---
+engines:
+  rubocop:
+    enabled: true
+  eslint:
+    enabled: true
+    config: client/.eslintrc.yml
+ratings:
+  paths:
+  - client/src/**.js
+  - client/src/**.jsx
+  - lib/**.rb
