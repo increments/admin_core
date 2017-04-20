@@ -41,6 +41,7 @@
         AdminCore::ViewObject::SidebarDropdown.new(
           "Dropdown",
           [
+            AdminCore::ViewObject::SidebarLink.new('Error 404', '/pages/404'),
             AdminCore::ViewObject::SidebarLink.new('External Link', 'http://example.com')
           ],
         ),
