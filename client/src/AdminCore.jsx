@@ -2,12 +2,12 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
+import AppRoute from "./AppRoute";
+import Page404 from "./Page404";
 import EditPage from "./resource-page/Edit";
-import Header from "./components/Header";
 import IndexPage from "./resource-page/Index";
 import NewPage from "./resource-page/New";
 import ShowPage from "./resource-page/Show";
-import Sidebar from "./components/Sidebar";
 import type {
   ResourceField,
   ResourceFieldView,
@@ -46,24 +46,34 @@ export default class AdminCore extends React.Component {
     return new viewClass(filter);
   }
 
+  renderAppRoute(path: ?string, component: ReactClass<*>, key: string) {
+    if (!path) return;
+    return (
+      <AppRoute
+        sidebar={this.props.sidebar}
+        siteName={this.props.siteName}
+        resourceManagers={this.props.resourceManagers}
+        exact
+        path={path}
+        component={component}
+        key={key}
+      />
+    );
+  }
+
   render() {
     return (
       <BrowserRouter>
-        <div className="app">
-          <Header siteName={this.props.siteName} />
-          <div className="app-body">
-            <Sidebar items={this.props.sidebar} />
-            <Switch>
-              {this.props.children}
-              {this.props.resourceManagers.map((resourceManager, i) => [
-                <Route exact path={resourceManager.indexPath} component={IndexPage(resourceManager)} key={`index-${i}`} />,
-                resourceManager.newPath && <Route exact path={resourceManager.newPath} component={NewPage(resourceManager)} key={`new-${i}`} />,
-                <Route exact path={resourceManager.showPath} component={ShowPage(resourceManager)} key={`show-${i}`} />,
-                resourceManager.editPath && <Route exact path={resourceManager.editPath} component={EditPage(resourceManager)} key={`edit-${i}`} />,
-              ].filter(route => route))}
-            </Switch>
-          </div>
-        </div>
+        <Switch>
+          {this.props.children}
+          {this.props.resourceManagers.map((resourceManager, i) => [
+            this.renderAppRoute(resourceManager.indexPath, IndexPage(resourceManager), `index-${i}`),
+            this.renderAppRoute(resourceManager.newPath, NewPage(resourceManager), `new-${i}`),
+            this.renderAppRoute(resourceManager.showPath, ShowPage(resourceManager), `show-${i}`),
+            this.renderAppRoute(resourceManager.editPath, EditPage(resourceManager), `edit-${i}`),
+          ].filter(route => route))}
+          <Route component={Page404} />
+        </Switch>
       </BrowserRouter>
     );
   }
